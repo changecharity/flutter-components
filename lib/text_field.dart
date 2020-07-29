@@ -1,4 +1,4 @@
-library change_charity_components;
+library text_field;
 
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class ChangeTextInput extends StatefulWidget {
     this.isPassword : false,
     this.last : false,
     this.errFunc,
-    this.errMsg,
+    this.errMsg : '',
     this.lastFunc,
   });
 
@@ -24,13 +24,14 @@ class ChangeTextInput extends StatefulWidget {
   final bool last;
   final Function errFunc;
   final Function lastFunc;
+//  add autofill hints once it becomes available
 
   @override
   _ChangeTextInputState createState() => _ChangeTextInputState();
 }
 
 class _ChangeTextInputState extends State<ChangeTextInput> {
-  bool _obscurePass = false;
+  bool _obscurePass = true;
 
   Widget _textContainer(constraints){
     return Container(
@@ -49,7 +50,7 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
       child: TextField(
 //      autofillHints: [AutofillHints.email],
         controller: widget.controller,
-        obscureText: _obscurePass,
+        obscureText: widget.isPassword ? _obscurePass : false,
         onChanged: (s) {
           setState(() {
             widget.errFunc("");
@@ -102,21 +103,19 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
   Widget _passSuffix() {
     return Container(
       margin: EdgeInsets.only(left: 15, right: 25),
-      child: GestureDetector(
-        onTap: (){
+      child: IconButton(
+        splashColor: Colors.transparent,
+        onPressed: (){
           setState(() {
             _obscurePass=!_obscurePass;
           });
         },
-        child: Container(
-          height: 50,
-          child: Icon(
-            _obscurePass ? Icons.visibility : Icons.visibility_off,
-            size: 20,
-            color: Colors.black,
-          ),
+        icon: Icon(
+          _obscurePass ? Icons.visibility : Icons.visibility_off,
+          size: 20,
+          color: Colors.black,
         ),
-      ),
+      )
     );
   }
 

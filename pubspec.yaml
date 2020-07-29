@@ -1,6 +1,6 @@
 name: change_charity_components
 description: Components for the Change Charity flutter application.
-version: 0.0.1
+version: 0.0.2
 author: Chezky Felsen <c@changecharity.io>
 homepage: https://github.com/changecharity/fluttercomponents.git
 
