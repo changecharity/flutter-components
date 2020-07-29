@@ -1,3 +1,1 @@
-## [0.0.1] - TODO: Add release date.
-
-* TODO: Describe initial release.
+## [0.0.3] - Paintings, SubmitRow, and TextField all imported through change_charity_components.dart

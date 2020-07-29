@@ -1,7 +1,6 @@
 name: change_charity_components
-description: Components for the Change Charity flutter application.
-version: 0.0.2
-author: Chezky Felsen <c@changecharity.io>
+description: Components for the Change Charity flutter application. Easily integrate our custom paints, custom textfields, and submit rows. More to come soon hopefully. Help is always welcome.
+version: 0.0.3
 homepage: https://github.com/changecharity/fluttercomponents.git
 
 environment:

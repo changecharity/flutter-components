@@ -8,8 +8,8 @@ class ChangeSubmitRow extends StatefulWidget {
     @required this.animation,
     @required this.onClick,
     @required this.loading,
-    this.text : '',
-    this.scale : 1,
+    this.text: '',
+    this.scale: 1,
   });
 
   final Animation<Color> animation;
@@ -25,7 +25,7 @@ class ChangeSubmitRow extends StatefulWidget {
 class _ChangeSubmitRowState extends State<ChangeSubmitRow> {
   Widget _text() {
     return Container(
-      margin: EdgeInsets.fromLTRB(10,10,10,0),
+      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
       child: Text(
         widget.text,
         style: TextStyle(
@@ -45,7 +45,7 @@ class _ChangeSubmitRowState extends State<ChangeSubmitRow> {
       );
     } else {
       return Container(
-        margin: EdgeInsets.fromLTRB(0,10,20,0),
+        margin: EdgeInsets.fromLTRB(0, 10, 20, 0),
         child: RaisedButton(
           onPressed: () {
             FocusScope.of(context).unfocus();
@@ -75,7 +75,6 @@ class _ChangeSubmitRowState extends State<ChangeSubmitRow> {
       );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {

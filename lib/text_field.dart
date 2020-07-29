@@ -8,10 +8,10 @@ class ChangeTextInput extends StatefulWidget {
     @required this.focusNode,
     @required this.hintText,
     @required this.prefixIcon,
-    this.isPassword : false,
-    this.last : false,
+    this.isPassword: false,
+    this.last: false,
     this.errFunc,
-    this.errMsg : '',
+    this.errMsg: '',
     this.lastFunc,
   });
 
@@ -33,9 +33,11 @@ class ChangeTextInput extends StatefulWidget {
 class _ChangeTextInputState extends State<ChangeTextInput> {
   bool _obscurePass = true;
 
-  Widget _textContainer(constraints){
+  Widget _textContainer(constraints) {
     return Container(
-      margin: EdgeInsets.only(right: constraints.maxWidth * 0.05, left:  constraints.maxWidth * 0.05),
+      margin: EdgeInsets.only(
+          right: constraints.maxWidth * 0.05,
+          left: constraints.maxWidth * 0.05),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -56,8 +58,10 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
             widget.errFunc("");
           });
         },
-        onEditingComplete: (){
-          widget.last ? widget.focusNode.unfocus() : widget.focusNode.nextFocus();
+        onEditingComplete: () {
+          widget.last
+              ? widget.focusNode.unfocus()
+              : widget.focusNode.nextFocus();
           widget.lastFunc();
         },
         decoration: InputDecoration(
@@ -73,8 +77,9 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
           ),
           suffixIcon: widget.isPassword ? _passSuffix() : null,
         ),
-        focusNode:widget.focusNode,
-        textInputAction: widget.last ? TextInputAction.done : TextInputAction.next,
+        focusNode: widget.focusNode,
+        textInputAction:
+            widget.last ? TextInputAction.done : TextInputAction.next,
       ),
     );
   }
@@ -105,9 +110,9 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
       margin: EdgeInsets.only(left: 15, right: 25),
       child: IconButton(
         splashColor: Colors.transparent,
-        onPressed: (){
+        onPressed: () {
           setState(() {
-            _obscurePass=!_obscurePass;
+            _obscurePass = !_obscurePass;
           });
         },
         icon: Icon(
@@ -115,14 +120,14 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
           size: 20,
           color: Colors.black,
         ),
-      )
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints){
+      builder: (context, constraints) {
         return Column(
           children: <Widget>[
             _textContainer(constraints),
