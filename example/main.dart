@@ -30,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ChangeTextInput(
+        autofillHint: AutofillHints.password,
         controller: _textController,
         focusNode: _focusNode,
         hintText: "Password",

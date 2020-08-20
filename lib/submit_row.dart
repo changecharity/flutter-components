@@ -4,19 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ChangeSubmitRow extends StatefulWidget {
-  ChangeSubmitRow({
-    @required this.animation,
-    @required this.onClick,
-    @required this.loading,
-    this.text: '',
-    this.scale: 1,
-  });
+  ChangeSubmitRow(
+      {@required this.animation,
+      @required this.onClick,
+      @required this.loading,
+      this.text: '',
+      this.scale: 1,
+      this.margin,
+      this.buttonColors: const [Color(0xFF29B6F6), Color(0xFF4FC3F7)],
+      this.arrowColor: const Color(0xFFFFFFFF)})
+      : assert(animation != null),
+        assert(onClick != null),
+        assert(loading != null);
 
   final Animation<Color> animation;
   final String text;
   final double scale;
   final Function onClick;
   final bool loading;
+  final List<Color> buttonColors;
+  final Color arrowColor;
+  final EdgeInsets margin;
 
   @override
   _ChangeSubmitRowState createState() => _ChangeSubmitRowState();
@@ -38,7 +46,7 @@ class _ChangeSubmitRowState extends State<ChangeSubmitRow> {
   Widget _button() {
     if (widget.loading) {
       return Container(
-        margin: EdgeInsets.fromLTRB(32, 0, 32, 0),
+        margin: EdgeInsets.fromLTRB(22, 0, 32, 0),
         child: CircularProgressIndicator(
           valueColor: widget.animation,
         ),
@@ -46,6 +54,7 @@ class _ChangeSubmitRowState extends State<ChangeSubmitRow> {
     } else {
       return Container(
         margin: EdgeInsets.fromLTRB(0, 10, 20, 0),
+        width: 70,
         child: RaisedButton(
           onPressed: () {
             FocusScope.of(context).unfocus();
@@ -56,19 +65,19 @@ class _ChangeSubmitRowState extends State<ChangeSubmitRow> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(60))),
           child: Ink(
-            width: 90,
-            height: 50,
+            width: 70,
+            height: 40,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.lightBlue[400], Colors.lightBlue[300]],
+                  colors: widget.buttonColors,
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
                 borderRadius: BorderRadius.circular(30.0)),
             child: Icon(
               Icons.arrow_forward,
-              color: Colors.white,
-              size: 30,
+              color: widget.arrowColor,
+              size: 27,
             ),
           ),
         ),
@@ -85,7 +94,7 @@ class _ChangeSubmitRowState extends State<ChangeSubmitRow> {
           child: Align(
             alignment: Alignment.centerRight,
             child: Container(
-              margin: EdgeInsets.only(bottom: 10),
+              margin: widget.margin,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height > 700 ? 70 : 60,
               child: Row(

@@ -8,12 +8,17 @@ class ChangeTextInput extends StatefulWidget {
     @required this.focusNode,
     @required this.hintText,
     @required this.prefixIcon,
+    @required this.autofillHint,
     this.isPassword: false,
     this.last: false,
     this.errFunc,
     this.errMsg: '',
     this.lastFunc,
-  });
+  })  : assert(controller != null),
+        assert(focusNode != null),
+        assert(hintText != null),
+        assert(prefixIcon != null),
+        assert(autofillHint != null);
 
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -24,7 +29,7 @@ class ChangeTextInput extends StatefulWidget {
   final bool last;
   final Function errFunc;
   final Function lastFunc;
-//  add autofill hints once it becomes available
+  final String autofillHint;
 
   @override
   _ChangeTextInputState createState() => _ChangeTextInputState();
@@ -39,18 +44,18 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
           right: constraints.maxWidth * 0.05,
           left: constraints.maxWidth * 0.05),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.white : Colors.black,
         borderRadius: BorderRadius.all(Radius.circular(30)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[350],
+            color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.grey[350] : Colors.grey[600],
             blurRadius: 20.0,
             offset: Offset.fromDirection(0.9),
           ),
         ],
       ),
       child: TextField(
-//      autofillHints: [AutofillHints.email],
+        autofillHints: [widget.autofillHint],
         controller: widget.controller,
         obscureText: widget.isPassword ? _obscurePass : false,
         onChanged: (s) {
@@ -72,7 +77,7 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
             child: Icon(
               widget.prefixIcon,
               size: 20,
-              color: Colors.black,
+              color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
             ),
           ),
           suffixIcon: widget.isPassword ? _passSuffix() : null,
@@ -107,7 +112,7 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
 
   Widget _passSuffix() {
     return Container(
-      margin: EdgeInsets.only(left: 15, right: 25),
+      margin: EdgeInsets.only(left: 15, right: 20),
       child: IconButton(
         splashColor: Colors.transparent,
         onPressed: () {
@@ -118,7 +123,7 @@ class _ChangeTextInputState extends State<ChangeTextInput> {
         icon: Icon(
           _obscurePass ? Icons.visibility : Icons.visibility_off,
           size: 20,
-          color: Colors.black,
+          color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
         ),
       ),
     );

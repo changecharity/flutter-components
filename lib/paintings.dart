@@ -200,7 +200,7 @@ class ChangeProfilePaint extends CustomPainter {
     pathA.moveTo(size.width, size.height + 50);
     pathA.lineTo(size.width, size.height * .85);
     pathA.quadraticBezierTo(
-        size.width * .8, size.height * .6, size.width * .65, size.height * .85);
+        size.width * .8, size.height * .78, size.width * .72, size.height * .85);
     pathA.quadraticBezierTo(
         size.width * .6, size.height * .95, size.width * .3, size.height * .9);
     pathA.quadraticBezierTo(
@@ -211,7 +211,7 @@ class ChangeProfilePaint extends CustomPainter {
     pathB.moveTo(size.width, size.height + 50);
     pathB.lineTo(size.width, size.height * .95);
     pathB.quadraticBezierTo(
-        size.width * .7, size.height * .55, size.width * .5, size.height * .9);
+        size.width * .8, size.height * .7, size.width * .55, size.height * .9);
     pathB.quadraticBezierTo(
         size.width * .45, size.height, size.width * .2, size.height * .9);
     pathB.quadraticBezierTo(
